@@ -17,6 +17,7 @@ A sleek, responsive, and keyless Movie & TV Show Discovery Web Application built
 - **Logic**: Vanilla ES6 JavaScript (debounced event handlers, Fetch API, dynamic DOM rendering, and LocalStorage manipulation).
 - **Icons**: FontAwesome v6.4 (linked via CDN).
 - **Typography**: Google Fonts ("Outfit" & "Plus Jakarta Sans")
+```
 
 - DEVELOPED BY
 - FAHMIDHA ABDUL HAKEEM
