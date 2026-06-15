@@ -26,12 +26,14 @@
                 </div>
                 <h1 class="logo-text">Cine<span>Wave</span></h1>
             </div>
+
             <!-- Search Bar -->
             <div class="search-wrapper">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" id="movieSearch" placeholder="Search movies, TV shows, anime..." autocomplete="off">
                 <button id="clearSearchBtn" class="clear-btn hidden"><i class="fa-solid fa-xmark"></i></button>
             </div>
+
             <!-- Theme Switcher & Actions -->
             <div class="header-actions">
                 <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
@@ -40,6 +42,7 @@
             </div>
         </div>
     </header>
+
     <!-- Main Container -->
     <main class="main-container">
         <!-- Hero Section (Featured Movie) -->
@@ -60,6 +63,7 @@
                 </button>
             </div>
         </section>
+
         <!-- Filter and Sort Section -->
         <section class="controls-section">
             <!-- Genre Quick Tags -->
@@ -78,6 +82,7 @@
                     <button class="genre-tag" data-genre="Anime">Anime</button>
                 </div>
             </div>
+
             <!-- Sorting & Rating Controls -->
             <div class="controls-row">
                 <div class="rating-filter-wrapper">
@@ -87,6 +92,7 @@
                         <div class="slider-track-fill"></div>
                     </div>
                 </div>
+
                 <div class="sort-wrapper">
                     <label for="sortBySelect">Sort By</label>
                     <div class="select-container">
@@ -104,12 +110,14 @@
                 </div>
             </div>
         </section>
+
         <!-- Movie List Section -->
         <section class="movies-section">
             <div class="section-header">
                 <h2 class="section-title" id="sectionHeading">Trending Shows</h2>
                 <span class="results-count" id="resultsCount">0 shows found</span>
             </div>
+
             <!-- Movie Cards Grid -->
             <div class="movie-grid" id="movieGrid">
                 <!-- Loader Shimmers (default on load) -->
@@ -120,6 +128,7 @@
                 <div class="shimmer-card"></div>
                 <div class="shimmer-card"></div>
             </div>
+
             <!-- Empty State -->
             <div class="empty-state hidden" id="emptyState">
                 <div class="empty-icon">
@@ -131,6 +140,7 @@
             </div>
         </section>
     </main>
+
     <!-- Details Modal -->
     <div class="modal-overlay" id="movieModal">
         <div class="modal-container">
@@ -151,6 +161,7 @@
             </div>
         </div>
     </div>
+
     <!-- Footer -->
     <footer class="app-footer">
         <div class="footer-container">
@@ -174,5 +185,7 @@
             <p>&copy; 2026 CineWave. Made with <i class="fa-solid fa-heart"></i> for pair programming. All rights reserved.</p>
         </div>
     </footer>
+    <!-- Script Controller -->
+    <script src="script.js"></script>
 </body>
 </html>
