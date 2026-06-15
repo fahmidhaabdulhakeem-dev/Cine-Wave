@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CineWave - A premium, keyless movie search and discovery web application. Explore the latest shows, filter by genre, and read detailed information.">
+    <meta name="keywords" content="CineWave, movies, search movies, tv shows, cinema, tvmaze, web app, HTML, CSS, JavaScript">
+    <meta name="author" content="CineWave Team">
+    <title>CineWave | Discover Movies & TV Shows</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+    <!-- Navigation / Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-clapperboard"></i>
+                </div>
+                <h1 class="logo-text">Cine<span>Wave</span></h1>
+            </div>
+            <!-- Search Bar -->
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="movieSearch" placeholder="Search movies, TV shows, anime..." autocomplete="off">
+                <button id="clearSearchBtn" class="clear-btn hidden"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <!-- Theme Switcher & Actions -->
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Hero Section (Featured Movie) -->
+        <section class="hero-section" id="heroSection">
+            <div class="hero-backdrop" id="heroBackdrop"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-badge" id="heroBadge"><i class="fa-solid fa-fire"></i> Featured Show</div>
+                <h2 class="hero-title" id="heroTitle">Featured Movie Title</h2>
+                <div class="hero-meta">
+                    <span id="heroRating"><i class="fa-solid fa-star"></i> 8.5</span>
+                    <span id="heroYear">2026</span>
+                    <span id="heroGenres">Action, Drama</span>
+                </div>
+                <p class="hero-description" id="heroDescription">Loading details about the featured show...</p>
+                <button class="hero-btn" id="heroInfoBtn">
+                    <i class="fa-solid fa-circle-info"></i> More Info
+                </button>
+            </div>
+        </section>
+        <!-- Filter and Sort Section -->
+        <section class="controls-section">
+            <!-- Genre Quick Tags -->
+            <div class="filter-group">
+                <h3 class="group-title">Genres</h3>
+                <div class="genre-tags" id="genreContainer">
+                    <button class="genre-tag active" data-genre="all">All</button>
+                    <button class="genre-tag" data-genre="Action">Action</button>
+                    <button class="genre-tag" data-genre="Drama">Drama</button>
+                    <button class="genre-tag" data-genre="Comedy">Comedy</button>
+                    <button class="genre-tag" data-genre="Sci-Fi">Sci-Fi</button>
+                    <button class="genre-tag" data-genre="Thriller">Thriller</button>
+                    <button class="genre-tag" data-genre="Mystery">Mystery</button>
+                    <button class="genre-tag" data-genre="Adventure">Adventure</button>
+                    <button class="genre-tag" data-genre="Fantasy">Fantasy</button>
+                    <button class="genre-tag" data-genre="Anime">Anime</button>
+                </div>
+            </div>
+            <!-- Sorting & Rating Controls -->
+            <div class="controls-row">
+                <div class="rating-filter-wrapper">
+                    <label for="ratingSlider">Minimum Rating: <span id="ratingVal">0</span>/10</label>
+                    <div class="slider-container">
+                        <input type="range" id="ratingSlider" min="0" max="10" step="0.5" value="0">
+                        <div class="slider-track-fill"></div>
+                    </div>
+                </div>
+                <div class="sort-wrapper">
+                    <label for="sortBySelect">Sort By</label>
+                    <div class="select-container">
+                        <select id="sortBySelect">
+                            <option value="popularity">Popularity (Default)</option>
+                            <option value="ratingDesc">Rating: High to Low</option>
+                            <option value="ratingAsc">Rating: Low to High</option>
+                            <option value="nameAsc">Name: A to Z</option>
+                            <option value="nameDesc">Name: Z to A</option>
+                            <option value="yearDesc">Year: Newest</option>
+                            <option value="yearAsc">Year: Oldest</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Movie List Section -->
+        <section class="movies-section">
+            <div class="section-header">
+                <h2 class="section-title" id="sectionHeading">Trending Shows</h2>
+                <span class="results-count" id="resultsCount">0 shows found</span>
+            </div>
+            <!-- Movie Cards Grid -->
+            <div class="movie-grid" id="movieGrid">
+                <!-- Loader Shimmers (default on load) -->
+                <div class="shimmer-card"></div>
+                <div class="shimmer-card"></div>
+                <div class="shimmer-card"></div>
+                <div class="shimmer-card"></div>
+                <div class="shimmer-card"></div>
+                <div class="shimmer-card"></div>
+            </div>
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="emptyState">
+                <div class="empty-icon">
+                    <i class="fa-solid fa-film"></i>
+                </div>
+                <h3>No movies or shows found</h3>
+                <p>Try searching for something else or adjusting your filters.</p>
+                <button class="reset-filters-btn" id="resetFiltersBtn">Reset Filters</button>
+            </div>
+        </section>
+    </main>
+    <!-- Details Modal -->
+    <div class="modal-overlay" id="movieModal">
+        <div class="modal-container">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-content" id="modalContent">
+                <!-- Dynamically Populated Details -->
+                <div class="modal-shimmer">
+                    <div class="shimmer-box shimmer-image"></div>
+                    <div class="shimmer-info">
+                        <div class="shimmer-box shimmer-title"></div>
+                        <div class="shimmer-box shimmer-line"></div>
+                        <div class="shimmer-box shimmer-line"></div>
+                        <div class="shimmer-box shimmer-text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo-area">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-clapperboard"></i>
+                    </div>
+                    <span class="logo-text">Cine<span>Wave</span></span>
+                </div>
+                <p>Your ultimate destination for discovering entertainment. Find details, ratings, summaries, and more.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Powered By</h4>
+                <a href="https://www.tvmaze.com/api" target="_blank" rel="noopener noreferrer" class="api-attribution">
+                    <i class="fa-solid fa-database"></i> TVMaze API
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CineWave. Made with <i class="fa-solid fa-heart"></i> for pair programming. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
